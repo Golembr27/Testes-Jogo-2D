@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossVida : MonoBehaviour
 {
     int vidaMaximaDoBoss = 10;
-    int vidaAtualDoBoss;
+    public static int vidaAtualDoBoss;
 
     private void Update()
     {
