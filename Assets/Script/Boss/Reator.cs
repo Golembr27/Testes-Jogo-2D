@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Reator : MonoBehaviour
 {
+    public GameObject prefabEscudo;
+
     EscudoBoss escudoBoss;
 
-    int destruir;
-    int contagem;
+    public int destruir;
+    public int contagem;
 
     private void Start()
     {
@@ -18,7 +20,7 @@ public class Reator : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         contagem++;
-        if (collision.CompareTag("Player") && contagem == 3)
+        if (collision.CompareTag("Player") && contagem == destruir)
         {
             escudoBoss.QuebrarEscudo();
         }

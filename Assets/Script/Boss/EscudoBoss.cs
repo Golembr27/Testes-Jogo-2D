@@ -24,37 +24,40 @@ public class EscudoBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (BossVida.vidaAtualDoBoss <= 5 && ativouEscudo == 0)
+        //Escudo();
+        if (BossVida.vidaAtualDoBoss <= 10 && ativouEscudo == 0)
         {
             AtivarEscudo();
             ativouEscudo = 1;
-        }else ativouEscudo = 0;
+        }
         if (ativouEscudo == 1)
         {
             tempoDeDesativacaoAutomatica -= Time.deltaTime;
             if(tempoDeDesativacaoAutomatica <= 0)
             {
                 QuebrarEscudo();
+                ativouEscudo = 0;
             }
         }
     }
 
     public void AtivarEscudo()
     {
-        
-        escudoAtivo = Instantiate(prefabDoEscudo, spawnDoEscudo.position, spawnDoEscudo.rotation);
-        hits = UnityEngine.Random.Range(5,10);
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        escudoAtivo = Instantiate(prefabDoEscudo, transform.position, transform.rotation);
+        hits = UnityEngine.Random.Range(3,5);
     }
 
     public void QuebrarEscudo()
     {
+        GetComponent<CapsuleCollider2D>().enabled = true;
         Destroy(escudoAtivo.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Escudo()
     {
         hits--;
-        if (hits <= 0) 
+        if (hits <= 0)
         {
             QuebrarEscudo();
         }
